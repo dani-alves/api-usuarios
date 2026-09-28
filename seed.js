@@ -13,7 +13,6 @@ async function main() {
    // Usuário ADMIN
   const admin = await prisma.usuario.create({
     data: {
-      nome: "Admin User",
       email: "admin@test.com",
       idade: 25,
       telefone: "31999999999",
