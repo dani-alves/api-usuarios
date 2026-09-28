@@ -9,6 +9,19 @@ async function main() {
   // Limpa usuários antigos (opcional, mas útil para testes)
   await prisma.usuario.deleteMany();
 
+
+   // Usuário ADMIN
+  const admin = await prisma.usuario.create({
+    data: {
+      nome: "Admin User",
+      email: "admin@test.com",
+      idade: 25,
+      telefone: "31999999999",
+      senha: await bcrypt.hash("admin123", 10),
+      role: "admin",
+    },
+  });
+
   // Cria 2 usuários de teste
   const usuario1 = await prisma.usuario.create({
     data: {
@@ -16,6 +29,7 @@ async function main() {
       idade: 25,
       telefone: "31999999999",
       senha: await bcrypt.hash("senha123", 10),
+      
     },
   });
 
