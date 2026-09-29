@@ -6,13 +6,13 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🌱 Iniciando seed...");
 
-  // Limpa usuários antigos (opcional, mas útil para testes)
+  // Limpa usuários antigos
   await prisma.usuario.deleteMany();
 
-
-   // Usuário ADMIN
+  // Usuário ADMIN
   const admin = await prisma.usuario.create({
     data: {
+      nome: "Admin User",
       email: "admin@test.com",
       idade: 25,
       telefone: "31999999999",
@@ -21,28 +21,34 @@ async function main() {
     },
   });
 
-  // Cria 2 usuários de teste
+  // Usuário normal 1
   const usuario1 = await prisma.usuario.create({
     data: {
+      nome: "João Silva",
       email: "joao@test.com",
       idade: 25,
       telefone: "31999999999",
       senha: await bcrypt.hash("senha123", 10),
-      
+      role: "user",
     },
   });
 
+  // Usuário normal 2
   const usuario2 = await prisma.usuario.create({
     data: {
+      nome: "Maria Santos",
       email: "maria@test.com",
       idade: 30,
       telefone: "31988888888",
       senha: await bcrypt.hash("senha456", 10),
+      role: "user",
     },
   });
 
   console.log("✅ Seed concluído!");
-  console.log("Usuários criados:", usuario1, usuario2);
+  console.log("Admin:", admin.email);
+  console.log("Usuário 1:", usuario1.email);
+  console.log("Usuário 2:", usuario2.email);
 }
 
 main()
