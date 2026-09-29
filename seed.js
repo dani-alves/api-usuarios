@@ -12,7 +12,6 @@ async function main() {
   // Usuário ADMIN
   const admin = await prisma.usuario.create({
     data: {
-      nome: "Admin User",
       email: "admin@test.com",
       idade: 25,
       telefone: "31999999999",
@@ -24,7 +23,6 @@ async function main() {
   // Usuário normal 1
   const usuario1 = await prisma.usuario.create({
     data: {
-      nome: "João Silva",
       email: "joao@test.com",
       idade: 25,
       telefone: "31999999999",
@@ -36,7 +34,6 @@ async function main() {
   // Usuário normal 2
   const usuario2 = await prisma.usuario.create({
     data: {
-      nome: "Maria Santos",
       email: "maria@test.com",
       idade: 30,
       telefone: "31988888888",
